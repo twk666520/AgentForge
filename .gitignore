@@ -1,0 +1,39 @@
+﻿__pycache__/
+*.py[cod]
+*.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+coverage.xml
+
+# Ruff
+.ruff_cache/
+
+# Mypy
+.mypy_cache/
+
+# Project specific
+*.local.yaml
+*.local.yml
+credentials.json
