@@ -1,4 +1,4 @@
-﻿# AgentForge
+# AgentForge
 
 **AI Agent Enhancement Platform** — 给 AI Agent 装上可插拔的"感官"和"工具"。
 
@@ -19,7 +19,7 @@ agentforge/
 │   │   └── result.py        # 统一结果模型
 │   └── tests/
 ├── skills/             # 可插拔技能模块
-│   ├── skill-ocr/      # OCR 文字识别 (即将发布)
+│   ├── skill-ocr/      # OCR 文字识别 (已完成 ✓)
 │   ├── skill-translate/   # 翻译 (规划中)
 │   ├── skill-vision/      # 视觉分析 (规划中)
 │   └── ...
@@ -37,8 +37,17 @@ pip install -e core/
 # 安装一个技能 (以 OCR 为例)
 pip install -e skills/skill-ocr/
 
-# 使用
-agentforge ocr --image demo.png
+# OCR 命令行使用
+python -m ocr_skill.cli photo.png --langs en+ch_sim
+
+# Python SDK 使用
+from ocr_skill import OCREngine
+
+engine = OCREngine({"langs": ["en", "ch_sim"]})
+engine.initialize()
+result = engine.recognize("photo.png")
+print(result.data.raw_text)
+engine.cleanup()
 ```
 
 ## 核心概念
@@ -52,7 +61,7 @@ agentforge ocr --image demo.png
 
 | 技能 | 状态 | 描述 |
 |------|------|------|
-| OCR | 规划中 | 文字识别，支持多引擎后端 |
+| OCR | 已完成 | 文字识别，支持 EasyOCR 后端、多语言、图像预处理 |
 | Translate | 规划中 | 全局实时翻译，多语言支持 |
 | Vision | 规划中 | 图片识别、UI 分析、屏幕理解 |
 | Desktop | 规划中 | 截图、窗口信息、AI 操作辅助 |
