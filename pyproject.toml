@@ -34,3 +34,20 @@ pythonpath = ["core/src"]
 
 [tool.coverage.run]
 source = ["agentforge_core"]
+[project.scripts]
+agentforge = "agentforge_cli:main"
+
+[project.entry-points."agentforge.skills"]
+ocr = "ocr_skill"
+
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["apps/cli/src"]
+
+skill-ocr = ["skills/skill-ocr/tests"]
+skill-ocr-deps = ["agentforge-core", "Pillow"]
