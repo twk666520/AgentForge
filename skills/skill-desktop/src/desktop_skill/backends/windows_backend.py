@@ -2,26 +2,21 @@
 
 from __future__ import annotations
 
+import importlib
 from typing import Any
 
 from PIL import Image
 
 from desktop_skill.backends.base import BaseDesktopBackend
 
-try:
-    import pyautogui
+_HAS_WIN_DEPS = importlib.util.find_spec("pygetwindow") is not None
+if _HAS_WIN_DEPS:
     import pygetwindow as gw
-
-    _HAS_WIN_DEPS = True
-except ImportError:
-    _HAS_WIN_DEPS = False
 
 
 class WindowsDesktopBackend(BaseDesktopBackend):
-    """Native Windows desktop backend using pygetwindow + pyautogui.
-
-    Requires:
-        pip install pygetwindow pyautogui
+    """Native Windows desktop backend using pygetwindow.
+    Requires: pip install pygetwindow pyautogui pywinauto
     """
 
     def __init__(self) -> None:
@@ -29,15 +24,14 @@ class WindowsDesktopBackend(BaseDesktopBackend):
 
     def initialize(self, config: dict[str, Any]) -> None:
         if not _HAS_WIN_DEPS:
-            raise ImportError(
-                "WindowsDesktopBackend requires: pip install pygetwindow pyautogui"
-            )
+            raise ImportError("Requires: pip install pygetwindow pyautogui")
         self.initialized = True
 
     def list_windows(self) -> list[dict[str, Any]]:
         if not self.initialized:
             raise RuntimeError("Backend not initialized.")
-
+        if not _HAS_WIN_DEPS:
+            return []
         windows = gw.getAllWindows()
         result = []
         for w in windows:
@@ -57,7 +51,7 @@ class WindowsDesktopBackend(BaseDesktopBackend):
     def get_active_window(self) -> dict[str, Any]:
         if not self.initialized:
             raise RuntimeError("Backend not initialized.")
-        w = gw.getActiveWindow()
+        w = gw.getActiveWindow() if _HAS_WIN_DEPS else None
         if w is None:
             return {
                 "title": "",
@@ -66,7 +60,6 @@ class WindowsDesktopBackend(BaseDesktopBackend):
                 "top": 0,
                 "width": 0,
                 "height": 0,
-                "text_content": "",
             }
         return {
             "title": w.title,
@@ -75,7 +68,6 @@ class WindowsDesktopBackend(BaseDesktopBackend):
             "top": w.top,
             "width": w.width,
             "height": w.height,
-            "text_content": "",
         }
 
     def capture_screen(self) -> Image.Image:
@@ -92,12 +84,11 @@ class WindowsDesktopBackend(BaseDesktopBackend):
             import pywinauto
 
             app = pywinauto.Application().connect(title=title)
-            win = app.window(title=title)
-            return win.window_text()
+            return app.window(title=title).window_text()
         except ImportError:
-            return f"(pywinauto required for text extraction: {title})"
+            return f"(pywinauto required: {title})"
         except Exception:
-            return f"(could not read window text: {title})"
+            return f"(could not read: {title})"
 
     def cleanup(self) -> None:
         self.initialized = False

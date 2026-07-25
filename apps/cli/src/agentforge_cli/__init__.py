@@ -1,11 +1,10 @@
-
 """AgentForge CLI — discover and dispatch to installed skills."""
 
 from __future__ import annotations
+
 import importlib
 import sys
 from pathlib import Path
-
 
 __all__ = ["main"]
 
@@ -25,6 +24,7 @@ def _discover_skills() -> dict[str, object]:
     # Method 1: entry points (installed packages)
     try:
         from importlib.metadata import entry_points
+
         eps = entry_points(group="agentforge.skills")
         if eps:
             skills: dict[str, object] = {}
@@ -72,12 +72,14 @@ def _print_help() -> None:
         lines.append(f"  {name}")
     if not skills:
         lines.append("  (no skills installed)")
-    lines.extend([
-        "",
-        "Examples:",
-        "  agentforge ocr --image photo.png",
-        "  python -m agentforge_cli ocr --image photo.png",
-    ])
+    lines.extend(
+        [
+            "",
+            "Examples:",
+            "  agentforge ocr --image photo.png",
+            "  python -m agentforge_cli ocr --image photo.png",
+        ]
+    )
     print("\n".join(lines))
 
 
@@ -98,6 +100,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args[0] == "--version":
         from agentforge_core import __version__ as ver
+
         print(f"agentforge v{ver}")
         return 0
 

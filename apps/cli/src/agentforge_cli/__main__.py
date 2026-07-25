@@ -1,7 +1,7 @@
-
 """Enable ``python -m agentforge_cli``."""
 
-from agentforge_cli import main
 import sys
+
+from agentforge_cli import main
 
 sys.exit(main())
