@@ -1,0 +1,15 @@
+[project]
+name = "agentforge-skill-dev-toolkit"
+version = "0.1.0"
+description = "AgentForge Dev Toolkit - Developer utility tools"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "AgentForge Contributors" }]
+dependencies = ["agentforge-core"]
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+[tool.setuptools.packages.find]
+where = ["src"]
+[project.entry-points."agentforge.skills"]
+dev-toolkit = "dev_toolkit_skill"

@@ -28,6 +28,7 @@ translate = "translate_skill"
 vision = "vision_skill"
 desktop = "desktop_skill"
 github = "github_skill"
+dev-toolkit = "dev_toolkit_skill"
 
 [build-system]
 requires = ["setuptools>=64"]
