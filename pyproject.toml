@@ -24,6 +24,7 @@ agentforge = "agentforge_cli:main"
 [project.entry-points."agentforge.skills"]
 ocr = "ocr_skill"
 translate = "translate_skill"
+vision = "vision_skill"
 
 [build-system]
 requires = ["setuptools>=64"]

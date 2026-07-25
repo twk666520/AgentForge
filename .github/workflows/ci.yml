@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 on:
   push:
     branches: [ main ]
@@ -30,3 +30,5 @@ jobs:
         run: PYTHONPATH=skills/skill-ocr/src pytest skills/skill-ocr/tests/ -v
       - name: Test Translate
         run: PYTHONPATH=skills/skill-translate/src pytest skills/skill-translate/tests/ -v
+      - name: Test Vision
+        run: PYTHONPATH=skills/skill-vision/src pytest skills/skill-vision/tests/ -v

@@ -1,4 +1,4 @@
-﻿# AgentForge
+# AgentForge
 
 **AI Agent Enhancement Platform** — 给 AI Agent 装上可插拔的"感官"和"工具"。
 
@@ -50,6 +50,7 @@ python -m translate_skill.cli "Hello world" --target zh
 | 技能 | 状态 | 描述 |
 |------|------|------|
 | OCR | 已完成 | 文字识别，支持 EasyOCR 后端、多语言、图像预处理 |
+| Vision | 已完成 | 图像分析，支持 GPT-4o 视觉、UI 分析、场景识别 |
 | Translate | 已完成 | 多语言翻译，支持 OpenAI 后端、Mock 测试模式 |
 | Vision | 规划中 | 图片识别、UI 分析、屏幕理解 |
 | Desktop | 规划中 | 截图、窗口信息、AI 操作辅助 |
