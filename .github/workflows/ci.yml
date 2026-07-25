@@ -1,3 +1,4 @@
+
 name: CI
 on:
   push:
@@ -21,9 +22,9 @@ jobs:
           pip install hatchling ruff pytest Pillow
           pip install -e core/
       - name: Lint
-        run: ruff check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/
+        run: ruff check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/ skills/skill-vision/src/ skills/skill-desktop/src/
       - name: Format
-        run: ruff format --check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/
+        run: ruff format --check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/ skills/skill-vision/src/ skills/skill-desktop/src/
       - name: Test Core
         run: pytest core/tests/ -v
       - name: Test OCR
@@ -32,3 +33,5 @@ jobs:
         run: PYTHONPATH=skills/skill-translate/src pytest skills/skill-translate/tests/ -v
       - name: Test Vision
         run: PYTHONPATH=skills/skill-vision/src pytest skills/skill-vision/tests/ -v
+      - name: Test Desktop
+        run: PYTHONPATH=skills/skill-desktop/src pytest skills/skill-desktop/tests/ -v
