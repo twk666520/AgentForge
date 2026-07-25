@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentForge</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AgentForge</h1>
+    </header>
+    <div class="actions">
+      <button id="btn-summarize" class="btn">Summarize</button>
+      <button id="btn-translate" class="btn">Translate</button>
+      <button id="btn-extract" class="btn">Extract Text</button>
+    </div>
+    <div id="result" class="result hidden">
+      <div class="result-header">
+        <span id="result-label">Result</span>
+        <button id="btn-close" class="btn-small">&times;</button>
+      </div>
+      <pre id="result-content"></pre>
+    </div>
+    <footer>
+      <span class="status" id="status">Ready</span>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
