@@ -27,6 +27,7 @@ ocr = "ocr_skill"
 translate = "translate_skill"
 vision = "vision_skill"
 desktop = "desktop_skill"
+github = "github_skill"
 
 [build-system]
 requires = ["setuptools>=64"]

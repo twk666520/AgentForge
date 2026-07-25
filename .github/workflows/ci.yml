@@ -22,16 +22,14 @@ jobs:
           pip install hatchling ruff pytest Pillow
           pip install -e core/
       - name: Lint
-        run: ruff check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/ skills/skill-vision/src/ skills/skill-desktop/src/
+        run: ruff check core/src/ skills/skill-*/src/
       - name: Format
-        run: ruff format --check core/src/ skills/skill-ocr/src/ skills/skill-translate/src/ skills/skill-vision/src/ skills/skill-desktop/src/
+        run: ruff format --check core/src/ skills/skill-*/src/
       - name: Test Core
         run: pytest core/tests/ -v
-      - name: Test OCR
-        run: PYTHONPATH=skills/skill-ocr/src pytest skills/skill-ocr/tests/ -v
-      - name: Test Translate
-        run: PYTHONPATH=skills/skill-translate/src pytest skills/skill-translate/tests/ -v
-      - name: Test Vision
-        run: PYTHONPATH=skills/skill-vision/src pytest skills/skill-vision/tests/ -v
-      - name: Test Desktop
-        run: PYTHONPATH=skills/skill-desktop/src pytest skills/skill-desktop/tests/ -v
+      - name: Test Skills
+        run: |
+          for dir in skills/skill-*/; do
+            name=$(basename $dir)
+            PYTHONPATH=$dir/src pytest $dir/tests/ -v
+          done
