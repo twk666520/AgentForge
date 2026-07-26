@@ -1,0 +1,24 @@
+
+{
+  "name": "agentforge",
+  "version": "0.1.0",
+  "description": "AI Agent Enhancement Platform - Modular skills for AI agents",
+  "author": { "name": "AgentForge Contributors" },
+  "skills": "../skills/",
+  "interface": {
+    "displayName": "AgentForge",
+    "shortDescription": "AI Agent skills: OCR, Translate, Vision, Desktop, GitHub, Dev Tools",
+    "longDescription": "AgentForge is a modular platform with 6 pluggable skills:\n- OCR: Text recognition from images\n- Translate: Multi-language translation\n- Vision: Image analysis and screen understanding\n- Desktop: Window capture and automation\n- GitHub: Repository analysis and documentation\n- Dev Toolkit: JSON, Base64, JWT, UUID, Hash, Regex",
+    "developerName": "AgentForge Contributors",
+    "category": "AI",
+    "capabilities": [
+      { "name": "ocr", "description": "Recognize text from images using OCR" },
+      { "name": "translate", "description": "Translate text between languages" },
+      { "name": "vision", "description": "Analyze images with AI vision" },
+      { "name": "desktop", "description": "Window list, capture, and automation" },
+      { "name": "github", "description": "Analyze GitHub repositories" },
+      { "name": "dev-toolkit", "description": "JSON, Base64, JWT, UUID, Hash, Regex tools" }
+    ],
+    "defaultPrompt": "Help me use AgentForge skills like OCR, Translate, or Vision."
+  }
+}
